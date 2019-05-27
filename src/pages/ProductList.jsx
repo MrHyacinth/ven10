@@ -59,14 +59,12 @@ export default class ProductList extends Component {
             <Fragment>
               <button
                 className="btn btn-primary btn-sm"
-                onClick={() => this.editRecord(record)}
+                onClick={() => this.viewDetail(record)}
                 style={{ marginRight: '5px' }}
               >
-                <i className="fa fa-edit" />
+               View details
               </button>
-              <button className="btn btn-danger btn-sm" onClick={() => this.deleteRecord(record)}>
-                <i className="fa fa-trash" />
-              </button>
+             
             </Fragment>
           );
         },
@@ -100,12 +98,9 @@ export default class ProductList extends Component {
       });
   }
 
-  editRecord(record) {
+  viewDetail(record) {
     console.log('Edit Record', record);
-  }
-
-  deleteRecord(record) {
-    console.log('Delete Record', record);
+    window.location.href="/detail/"+record._id;
   }
 
   render() {
