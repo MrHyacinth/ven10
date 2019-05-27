@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ReactDatatable from '@ashvin27/react-datatable';
+import axios from 'axios';
 
 export default class ProductList extends Component {
   constructor(props) {
@@ -81,8 +82,22 @@ export default class ProductList extends Component {
     };
 
     this.state = {
-      products:[]
+      products: [],
     };
+  }
+
+  componentDidMount() {
+    const endpoint = `${window.location.origin}/api/v1/products`;
+
+    axios
+      .get(endpoint)
+      .then(result => {
+        console.log(result.data);
+        this.setState({ products: result.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   editRecord(record) {
@@ -96,7 +111,13 @@ export default class ProductList extends Component {
   render() {
     return (
       <div>
-        <ReactDatatable config={this.config} records={this.state.records} columns={this.columns} />
+        <a href="/create">
+          <button className="btn btn-primary" style={{ margin: '10px 0px 20px 0px' }}>
+            New Product
+          </button>
+        </a>
+
+        <ReactDatatable config={this.config} records={this.state.products} columns={this.columns} />
       </div>
     );
   }
