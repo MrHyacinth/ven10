@@ -96,15 +96,6 @@ export default class ProductAdd extends Component {
           </div>
 
           <div className="input-group">
-            {/* <input
-              name="image"
-              type="file"
-              accept="image/jpg, image/gif, image/png"
-              className="form-control"
-              placeholder="Image"
-              required
-              aria-describedby="basic-addon2"
-            /> */}
             <div class="cc-selector">
               <input id="sneakers" type="radio" name="image" value="sneakers.jpg" />
               <label class="drinkcard-cc sneakers" for="sneakers" />

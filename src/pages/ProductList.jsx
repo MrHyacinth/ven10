@@ -11,7 +11,7 @@ export default class ProductList extends Component {
         text: 'ID',
         className: 'id',
         align: 'left',
-        sortable: true
+        sortable: true,
       },
       {
         key: 'name',
@@ -41,9 +41,8 @@ export default class ProductList extends Component {
                 onClick={() => this.viewDetail(record)}
                 style={{ marginRight: '5px' }}
               >
-               View details
+                View details
               </button>
-             
             </Fragment>
           );
         },
@@ -52,10 +51,6 @@ export default class ProductList extends Component {
     this.config = {
       page_size: 10,
       length_menu: [10, 20, 50],
-      button: {
-        excel: true,
-        print: true,
-      },
     };
 
     this.state = {
@@ -69,7 +64,6 @@ export default class ProductList extends Component {
     axios
       .get(endpoint)
       .then(result => {
-        console.log(result.data);
         this.setState({ products: result.data });
       })
       .catch(error => {
@@ -78,8 +72,7 @@ export default class ProductList extends Component {
   }
 
   viewDetail(record) {
-    console.log('Edit Record', record);
-    window.location.href="/detail/"+record._id;
+    window.location.href = '/detail/' + record._id;
   }
 
   render() {
