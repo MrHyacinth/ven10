@@ -7,7 +7,7 @@ export default class ProductList extends Component {
     super(props);
     this.columns = [
       {
-        key: 'id',
+        key: 'serialNum',
         text: 'ID',
         className: 'id',
         align: 'left',
@@ -50,7 +50,7 @@ export default class ProductList extends Component {
     ];
     this.config = {
       page_size: 10,
-      length_menu: [10, 20, 50],
+      length_menu: [10, 20, 50]
     };
 
     this.state = {

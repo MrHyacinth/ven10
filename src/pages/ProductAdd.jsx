@@ -27,8 +27,9 @@ export default class ProductAdd extends Component {
     axios
       .post(url, { serialNum, name, description, price, category, image, color })
       .then(result => {
-        console.log(result);
-        window.location.href = '/';
+        setTimeout(() => {
+          window.location.href = '/detail/' + result.data._id;
+        }, 2000);
       })
       .catch(error => {
         console.log(error.response);
@@ -85,12 +86,10 @@ export default class ProductAdd extends Component {
           </div>
 
           <div className="input-group">
-            <select
-              name="category"
-              type="text"
-              className="form-control"
-              required>
-              <option value="" selected>Select A Category</option>
+            <select name="category" type="text" className="form-control" required>
+              <option value="" selected>
+                Select A Category
+              </option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Unisex">Unisex</option>

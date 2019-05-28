@@ -1,8 +1,6 @@
 const compression = require('compression');
 const helmet = require('helmet');
 const path = require('path');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const express = require('express');
 const exphbs = require('express-handlebars');
@@ -13,19 +11,12 @@ const app = express();
 const publicPath = path.resolve('public');
 
 app.use(compression());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(helmet());
 app.use(cors());
-
-app.use(cookieParser('cersei'));
-
-app.use(session({
-  secret: 'Ibrakadabra',
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: true },
-}));
 
 app.set('trust proxy', 1); // trust first proxy
 
