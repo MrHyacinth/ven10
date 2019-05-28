@@ -28,7 +28,7 @@ export default class ProductAdd extends Component {
       .post(url, { serialNum, name, description, price, category, image, color })
       .then(result => {
         console.log(result);
-        window.location.href="/";
+        window.location.href = '/';
       })
       .catch(error => {
         console.log(error.response);
@@ -38,11 +38,10 @@ export default class ProductAdd extends Component {
   render() {
     return (
       <div className="container parent">
-        
         <form onSubmit={this.handleSubmit}>
-        <h4> Add A New Product</h4>
-        
-        <div className="input-group">
+          <h4> Add A New Product</h4>
+
+          <div className="input-group">
             <input
               name="serialNum"
               type="number"
@@ -97,14 +96,23 @@ export default class ProductAdd extends Component {
           </div>
 
           <div className="input-group">
-            <input
+            {/* <input
               name="image"
-              type="text"
+              type="file"
+              accept="image/jpg, image/gif, image/png"
               className="form-control"
               placeholder="Image"
               required
               aria-describedby="basic-addon2"
-            />
+            /> */}
+            <div class="cc-selector">
+              <input id="sneakers" type="radio" name="image" value="sneakers.jpg" />
+              <label class="drinkcard-cc sneakers" for="sneakers" />
+              <input id="sneakers1" type="radio" name="image" value="sneakers1.jpg" />
+              <label class="drinkcard-cc sneakers1" for="sneakers1" />
+              <input id="watch1" type="radio" name="image" value="watch1.jpg" />
+              <label class="drinkcard-cc watch1" for="watch1" />
+            </div>
           </div>
 
           <div className="input-group">
@@ -123,8 +131,6 @@ export default class ProductAdd extends Component {
           </button>
         </form>
       </div>
-
-  
     );
   }
 }
