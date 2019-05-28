@@ -1,4 +1,4 @@
-This is a simple Product inventory project which uses React.js for it's front-end and Node.js for the backend. 
+This is a simple Product inventory project which uses React.js for it's front-end and Node.js for the backend, hosted on Heroku at https://ven10.herokuapp.com/ 
 
 It basically allows for filling out a form, where all the properties of the product to be created, is provided and saved to the database.
 
