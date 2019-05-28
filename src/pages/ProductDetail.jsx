@@ -37,40 +37,51 @@ export default class ProductDetail extends Component {
     const { product } = this.state;
 
     return (
-      <section className="section-wrap productsDetail pb-40">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="image-gallery">
-                <div className="col-md-3">
-                  <div className="mini-gallery-item" />
-                  <div className="mini-gallery-item" />
-                  <div className="mini-gallery-item" />
-                </div>
-                <div className="col-md-9 main-gallery-holder">
-                  <div className="main-gallery-item" />
-                </div>
+      <div className="container">
+        <div className="row mt-60">
+          <div className="col-md-5">
+            <div className="product-description">
+              <div className="image">
+                <img className="productImage" src={`/img/${product.image}`} />
               </div>
             </div>
-            <div className="col-md-6">
-              <div className="product-description">
-              <div className="id">{product.ID}</div>
-                <h3> {product.name}</h3>
+          </div>
 
-                <div>
-                  <h2 className="price">N{product.price}</h2>
-                </div>
-                <div>
-                  <h3 className="description">{product.description}</h3>
-                </div>
-                <div className="category">{product.category}</div>
-                <div className="category">{product.image}</div>
-                <div className="category">{product.color}</div>
+          <div className="col-md-7">
+            <div className="p30">
+              <div>
+                <label for="id">Product ID:</label>
+                <p className="id">{product.serialNum}</p>
+              </div>
+
+              <div>
+                <label for="id">Product Name:</label>
+                <p> {product.name}</p>
+              </div>
+
+              <div>
+                <label for="price">Price:</label>
+                <p className="price">N{product.price}</p>
+              </div>
+
+              <div>
+                <label for="description">Product Description:</label>
+                <p className="description">{product.description}</p>
+              </div>
+
+              <div>
+                <label for="category">Product Category:</label>
+                <p className="category">{product.category}</p>
+              </div>
+
+              <div>
+                <label for="color">Color:</label>
+                <p className="category">{product.color}</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     );
   }
 }
