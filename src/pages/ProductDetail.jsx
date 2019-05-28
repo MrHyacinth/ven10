@@ -79,6 +79,8 @@ export default class ProductDetail extends Component {
                 <p className="category">{product.color}</p>
               </div>
             </div>
+            {/* back button */}
+             <a href="/">Go To Product List</a>
           </div>
         </div>
       </div>
