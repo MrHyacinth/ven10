@@ -7,16 +7,16 @@ export default class ProductList extends Component {
     super(props);
     this.columns = [
       {
+        key: 'id',
+        text: 'ID',
+        className: 'id',
+        align: 'left',
+        sortable: true
+      },
+      {
         key: 'name',
         text: 'Name',
         className: 'name',
-        align: 'left',
-        sortable: true,
-      },
-      {
-        key: 'description',
-        text: 'Description',
-        className: 'address',
         align: 'left',
         sortable: true,
       },
@@ -25,27 +25,6 @@ export default class ProductList extends Component {
         text: 'Price',
         className: 'postcode',
         sortable: true,
-      },
-      {
-        key: 'category',
-        text: 'Category',
-        className: 'rating',
-        align: 'left',
-        sortable: true,
-      },
-      {
-        key: 'image',
-        text: 'Image',
-        className: 'type_of_food',
-        sortable: true,
-        align: 'left',
-      },
-      {
-        key: 'color',
-        text: 'Color',
-        className: 'type_of_food',
-        sortable: true,
-        align: 'left',
       },
       {
         key: 'action',

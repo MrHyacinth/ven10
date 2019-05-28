@@ -5,7 +5,6 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
 import ProductAdd from './pages/ProductAdd';
-
 const browserHistory = createBrowserHistory();
 
 render(

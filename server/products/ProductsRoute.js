@@ -3,9 +3,6 @@ const Product = require('./ProductsModel');
 const router = express.Router();
 
 router.get('/products', (req, res) => {
-  let { limit } = req.query;
-  limit = parseInt(limit);
-
   Product
     .find({}, (err, result) => {
       if(err){
@@ -32,7 +29,7 @@ router.get('/product/:id', (req, res) => {
 
 router.post('/products/', (req, res) => {
   const data = req.body;
-
+  
   const product = new Product(data);
 
   product.save((err, result) => {

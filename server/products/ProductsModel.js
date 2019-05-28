@@ -1,10 +1,15 @@
 const { Schema, model } = require('mongoose');
 
 const ProductSchema = new Schema({
+  serialNum: {
+    type: Number,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
   },
+
   description: {
     type: String,
     required: true,

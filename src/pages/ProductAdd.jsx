@@ -14,7 +14,7 @@ export default class ProductAdd extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
+    const serialNum = event.currentTarget.serialNum.value;
     const name = event.currentTarget.name.value;
     const description = event.currentTarget.description.value;
     const price = event.currentTarget.price.value;
@@ -23,14 +23,12 @@ export default class ProductAdd extends Component {
     const image = event.currentTarget.image.value;
 
     const url = `${window.location.origin}/api/v1/products`;
-    // const data = this.state;
 
     axios
-      .post(url, { name, description, price, color, category, image })
+      .post(url, { serialNum, name, description, price, category, image, color })
       .then(result => {
         console.log(result);
         window.location.href="/";
-        //this.setState({ data: result });
       })
       .catch(error => {
         console.log(error.response);
@@ -39,16 +37,28 @@ export default class ProductAdd extends Component {
 
   render() {
     return (
-      <div className="container">
-        <p> Add A Product</p>
+      <div className="container parent">
+        
         <form onSubmit={this.handleSubmit}>
+        <h4> Add A New Product</h4>
+        
+        <div className="input-group">
+            <input
+              name="serialNum"
+              type="number"
+              className="form-control"
+              placeholder="Product ID"
+              required
+              // aria-describedby="basic-addon1"
+            />
+          </div>
           <div className="input-group">
             <input
               name="name"
-              required
               type="text"
               className="form-control"
               placeholder="Product name"
+              required
               aria-describedby="basic-addon1"
             />
           </div>
@@ -56,10 +66,10 @@ export default class ProductAdd extends Component {
           <div className="input-group">
             <input
               name="description"
-              required
               type="text"
               className="form-control"
               placeholder="Description"
+              required
               aria-describedby="basic-addon2"
             />
           </div>
@@ -67,21 +77,21 @@ export default class ProductAdd extends Component {
           <div className="input-group">
             <input
               name="price"
-              required
               type="number"
               className="form-control"
               placeholder="Price"
+              required
               aria-label="Amount (to the nearest dollar)"
             />
           </div>
 
           <div className="input-group">
             <input
-              required
               name="category"
               type="text"
               className="form-control"
               placeholder="Category"
+              required
               aria-label="Amount (to the nearest dollar)"
             />
           </div>
@@ -89,10 +99,10 @@ export default class ProductAdd extends Component {
           <div className="input-group">
             <input
               name="image"
-              required
               type="text"
               className="form-control"
               placeholder="Image"
+              required
               aria-describedby="basic-addon2"
             />
           </div>
@@ -100,10 +110,10 @@ export default class ProductAdd extends Component {
           <div className="input-group">
             <input
               name="color"
-              required
               type="text"
               className="form-control"
               placeholder="Color"
+              required
               aria-describedby="basic-addon2"
             />
           </div>
@@ -113,6 +123,8 @@ export default class ProductAdd extends Component {
           </button>
         </form>
       </div>
+
+  
     );
   }
 }
