@@ -85,14 +85,16 @@ export default class ProductAdd extends Component {
           </div>
 
           <div className="input-group">
-            <input
+            <select
               name="category"
               type="text"
               className="form-control"
-              placeholder="Category"
-              required
-              aria-label="Amount (to the nearest dollar)"
-            />
+              required>
+              <option value="" selected>Select A Category</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Unisex">Unisex</option>
+            </select>
           </div>
 
           <div className="input-group">

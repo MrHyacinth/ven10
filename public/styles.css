@@ -17,6 +17,10 @@
     -moz-appearance: none;
     appearance: none;
   }
+
+  .form-control{
+    color: #9a9a9a !important;
+  }
   
   .cc-selector-2 input {
     position: absolute;
