@@ -121,7 +121,7 @@ export default class ProductAdd extends Component {
                 <label class="drinkcard-cc sneakers" for="sneakers" />
                 <input id="sneakers1" type="radio" name="image" value="sneakers1.jpg" />
                 <label class="drinkcard-cc sneakers1" for="sneakers1" />
-                <input id="watch1" type="radio" name="image" value="watch1.jpg" />
+                <input id="watch1" type="radio" name="image" value="wwatch1.jpg" />
                 <label class="drinkcard-cc watch1" for="watch1" />
               </div>
             </div>
