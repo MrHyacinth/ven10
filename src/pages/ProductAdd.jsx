@@ -37,14 +37,14 @@ export default class ProductAdd extends Component {
     axios
       .post(url, { serialNum, name, description, price, category, image, color })
       .then(result => {
-        this.setState({ loading: false, success: 'product added' });
+        this.setState({ loading: false, success: 'Product Added' });
 
         setTimeout(() => {
           window.location.href = '/detail/' + result.data._id;
         }, 2000);
       })
       .catch(error => {
-        this.setState({ loading: false, error: 'error in creating product' });
+        this.setState({ loading: false, error: 'Error in creating product' });
 
         console.log(error.response);
       });
