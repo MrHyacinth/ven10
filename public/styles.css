@@ -94,3 +94,126 @@ margin-top: 60px
 .p30{
   padding: 30px;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+	body {
+  /* background: #f9f9f9;
+  color: #666; */
+  font: 11px/14px Arial, Helvetica, sans-serif;
+} 
+
+.color-wrapper {
+  position: relative;
+  width: 250px;
+  margin: 20px 0;
+}
+
+.color-wrapper p {
+  margin-bottom: 5px;
+}
+
+input.call-picker {
+  border: 1px solid #AAA;
+  color: #666;
+  text-transform: uppercase;
+  float: left;    
+  outline: none;
+  padding: 10px;
+  text-transform: uppercase;
+  width: 85px;
+}
+
+.color-picker {
+  width: 135px;
+  background: #F3F3F3;
+  height: 89px;
+  padding: 5px;
+  border: 5px solid #fff;
+  box-shadow: 0px 0px 3px 1px #DDD;
+  position: absolute;
+  top: -20px;
+  right: -25px;
+  z-index: 22;
+}
+
+
+.color-holder {
+  background: rgb(78, 46, 219);
+  cursor: pointer;
+  border: 1px solid #AAA;
+  width: 40px;
+  height: 36px;
+  float: left;
+  margin-left: 5px;
+}
+
+.product-holder .product-image{
+
+  background: url('/img/sneakers.jpg');
+  height: 300px;
+  background-position: center;
+  background-size: cover;  
+  max-height: 300px;
+  max-width: 300px;
+  margin-bottom: 10px;
+
+}
+/* .product-holder img{
+  max-width: 300px;
+  max-height: 300px;
+} */
+
+
+.product-name{
+  font-size: 16px;
+}
+.product-price{
+  font-size: 14px;
+}
+
+
+.color-holder2 {
+  cursor: pointer;
+  border: 1px solid #AAA;
+  width: 40px;
+  height: 36px;
+  float: none;
+  margin-left: 0;
+}
+
+div#color-picker.color-picker  li.color-item {
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  list-style-type: none;
+  float: left;
+  margin: 2px;
+  border: 1px solid #DDD;
+}
+.ptitle{
+  margin-top: 40px;
+}
+
+.mt-50{
+  margin-top: 50px;
+}
+
+.color-picker .color-item:hover {
+  border: 1px solid #666;
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+  filter:alpha(opacity=8);
+}
+
+textarea{
+  margin-top: 10%;
+}
+
+/* input[type=text] {
+  background-color: #eee;
+  border-radius: 3px;;  
+} */

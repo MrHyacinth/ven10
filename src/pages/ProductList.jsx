@@ -5,53 +5,6 @@ import axios from 'axios';
 export default class ProductList extends Component {
   constructor(props) {
     super(props);
-    this.columns = [
-      {
-        key: 'serialNum',
-        text: 'ID',
-        className: 'id',
-        align: 'left',
-        sortable: true,
-      },
-      {
-        key: 'name',
-        text: 'Name',
-        className: 'name',
-        align: 'left',
-        sortable: true,
-      },
-      {
-        key: 'price',
-        text: 'Price',
-        className: 'postcode',
-        sortable: true,
-      },
-      {
-        key: 'action',
-        text: 'Action',
-        className: 'action',
-        width: 100,
-        align: 'left',
-        sortable: false,
-        cell: record => {
-          return (
-            <Fragment>
-              <button
-                className="btn btn-primary btn-sm"
-                onClick={() => this.viewDetail(record)}
-                style={{ marginRight: '5px' }}
-              >
-                View details
-              </button>
-            </Fragment>
-          );
-        },
-      },
-    ];
-    this.config = {
-      page_size: 10,
-      length_menu: [10, 20, 50]
-    };
 
     this.state = {
       products: [],
@@ -76,6 +29,8 @@ export default class ProductList extends Component {
   }
 
   render() {
+    const {products} = this.state;
+    console.log(products);
     return (
       <div>
         <a href="/create">
@@ -84,8 +39,27 @@ export default class ProductList extends Component {
           </button>
         </a>
 
-        <ReactDatatable config={this.config} records={this.state.products} columns={this.columns} />
-      </div>
+        <div className="container">
+          <div className="row">
+
+          {
+            products.map( (product,index) => 
+            <a href={`/detail/${product._id}`}>
+              <div className="col-md-4 col-sm-4 col-xs-12" key={index}>
+                  <div className="product-holder">
+                  <div className="product-image">
+                    </div>
+                    <p>Name: <span>{product.name}</span></p>
+                    <p>Price: <span>{product.price}</span></p>
+                    </div>
+              </div>
+            </a>
+             )
+          }
+            </div>
+        </div>
+        </div>
+ 
     );
   }
 }

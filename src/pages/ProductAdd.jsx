@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 
 export default class ProductAdd extends Component {
   constructor(props) {
@@ -15,28 +16,102 @@ export default class ProductAdd extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    var colorList = [
+      '000000',
+      '993300',
+      '333300',
+      '003300',
+      '003366',
+      '000066',
+      '333399',
+      '333333',
+      '660000',
+      'FF6633',
+      '666633',
+      '336633',
+      '336666',
+      '0066FF',
+      '666699',
+      '666666',
+      'CC3333',
+      'FF9933',
+      '99CC33',
+      '669966',
+      '66CCCC',
+      '3366FF',
+      '663366',
+      '999999',
+      'CC66FF',
+      'FFCC33',
+      'FFFF66',
+      '99FF66',
+      '99CCCC',
+      '66CCFF',
+      '993366',
+      'CCCCCC',
+      'FF99CC',
+      'FFCC99',
+      'FFFF99',
+      'CCffCC',
+      'CCFFff',
+      '99CCFF',
+      'CC99FF',
+      'FFFFFF',
+    ];
+    var picker = $('#color-picker');
+
+    for (var i = 0; i < colorList.length; i++) {
+      picker.append(
+        '<li class="color-item" data-hex="' +
+          '#' +
+          colorList[i] +
+          '" style="background-color:' +
+          '#' +
+          colorList[i] +
+          ';"></li>',
+      );
+    }
+
+    $('body').click(function() {
+      picker.fadeOut();
+    });
+
+    $('.call-picker').click(function(event) {
+      event.stopPropagation();
+      picker.fadeIn();
+      picker.children('li').hover(function() {
+        var codeHex = $(this).data('hex');
+
+        $('.color-holder').css('background-color', codeHex);
+        $('#pickcolor').val(codeHex);
+      });
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     let serialNum;
     const name = event.currentTarget.name.value;
     const description = event.currentTarget.description.value;
     const price = event.currentTarget.price.value;
-    const color = event.currentTarget.color.value;
+    const color = event.currentTarget.pickcolor.value;
     const category = event.currentTarget.category.value;
     const image = event.currentTarget.image.value;
-
-    var num = "";
-    var possible = "0123456789";
-
-    for (var i = 0; i < 4; i++)
-      num += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    serialNum  = num;
 
     if (!image) {
       alert('Please select an image ');
       return;
     }
+
+    var num = '';
+    var possible = '0123456789';
+
+    for (var i = 0; i < 4; i++) num += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    serialNum = num;
+
+   
 
     const url = `${window.location.origin}/api/v1/products`;
 
@@ -113,18 +188,21 @@ export default class ProductAdd extends Component {
               </div>
             </div>
 
-            <div className="input-group">
+            <div className="color-wrapper">
+              <p>Choose Color (# hex)</p>
               <input
-                name="color"
                 type="text"
-                className="form-control"
-                placeholder="Color"
+                name="pickcolor"
+                placeholder="#FFFFFF"
+                id="pickcolor"
+                className="call-picker"
                 required
-                aria-describedby="basic-addon2"
               />
+              <div className="color-holder call-picker" />
+              <div className="color-picker" id="color-picker" style={{ display: 'none' }} />
             </div>
 
-             <div className="input-group">
+            <div className="input-group">
               <textarea
                 name="description"
                 type="text"
@@ -133,8 +211,8 @@ export default class ProductAdd extends Component {
                 className="form-control"
                 placeholder="Description"
                 required
-                aria-describedby="basic-addon2">
-              </textarea>
+                aria-describedby="basic-addon2"
+              />
             </div>
 
             <button disabled={loading} className="btn btn-primary" type="submit">

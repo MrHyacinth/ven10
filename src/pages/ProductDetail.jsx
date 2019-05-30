@@ -38,7 +38,9 @@ export default class ProductDetail extends Component {
 
     return (
       <div className="container">
-        <div className="row mt-60">
+        <h3 className="ptitle mt-30">Produce Detail</h3>
+        <div className="row mt-50">
+          
           <div className="col-md-5">
             <div className="product-description">
               <div className="image">
@@ -76,11 +78,11 @@ export default class ProductDetail extends Component {
 
               <div>
                 <label for="color">Color:</label>
-                <p className="category">{product.color}</p>
+                <div className="color-holder2" style={{backgroundColor: product.color}} />
               </div>
             </div>
             {/* back button */}
-             <a href="/">Go To Product List</a>
+            <a href="/">Go To Product List</a>
           </div>
         </div>
       </div>
