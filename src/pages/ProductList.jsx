@@ -33,11 +33,22 @@ export default class ProductList extends Component {
     console.log(products);
     return (
       <div>
-        <a href="/create">
+       <div>
+          <div className="container">
+            <div className="row header-and-button">
+              <div className="mleft">
+                  <h3>Product List </h3>
+              </div>
+              <div className="mright"> 
+                <a href="/create">
           <button className="btn btn-primary" style={{ margin: '10px 0px 20px 0px' }}>
-            New Product
+           + New Product
           </button>
         </a>
+        </div>
+            </div>
+          </div>
+      </div> 
 
         <div className="container">
           <div className="row">
@@ -49,6 +60,7 @@ export default class ProductList extends Component {
                   <div className="product-holder">
                   <div className="product-image">
                     </div>
+                    <p>ID: <span>{product.serialNum}</span></p>
                     <p>Name: <span>{product.name}</span></p>
                     <p>Price: <span>{product.price}</span></p>
                     </div>

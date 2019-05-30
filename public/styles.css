@@ -108,12 +108,27 @@ margin-top: 60px
 
 .color-wrapper {
   position: relative;
-  width: 250px;
+  width: 100%;
   margin: 20px 0;
 }
 
 .color-wrapper p {
   margin-bottom: 5px;
+}
+
+.product-holder{
+  border-bottom: 2px solid #eee;
+  margin: 5% 10%;
+
+}
+.header-and-button{
+  margin: 0 3%;
+}
+.mright{
+  float: right;
+}
+.mleft{
+  float: left;
 }
 
 input.call-picker {
@@ -124,7 +139,7 @@ input.call-picker {
   outline: none;
   padding: 10px;
   text-transform: uppercase;
-  width: 85px;
+  width: 88%;
 }
 
 .color-picker {

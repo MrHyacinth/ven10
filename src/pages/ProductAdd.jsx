@@ -189,11 +189,11 @@ export default class ProductAdd extends Component {
             </div>
 
             <div className="color-wrapper">
-              <p>Choose Color (# hex)</p>
+              {/* <p>Choose Color (# hex)</p> */}
               <input
                 type="text"
                 name="pickcolor"
-                placeholder="#FFFFFF"
+                placeholder="Color"
                 id="pickcolor"
                 className="call-picker"
                 required
