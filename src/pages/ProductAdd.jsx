@@ -17,13 +17,21 @@ export default class ProductAdd extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const serialNum = event.currentTarget.serialNum.value;
+    let serialNum;
     const name = event.currentTarget.name.value;
     const description = event.currentTarget.description.value;
     const price = event.currentTarget.price.value;
     const color = event.currentTarget.color.value;
     const category = event.currentTarget.category.value;
     const image = event.currentTarget.image.value;
+
+    var num = "";
+    var possible = "0123456789";
+
+    for (var i = 0; i < 4; i++)
+      num += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    serialNum  = num;
 
     if (!image) {
       alert('Please select an image ');
@@ -63,33 +71,12 @@ export default class ProductAdd extends Component {
 
             <div className="input-group">
               <input
-                name="serialNum"
-                type="number"
-                className="form-control"
-                placeholder="Product ID"
-                required
-                // aria-describedby="basic-addon1"
-              />
-            </div>
-            <div className="input-group">
-              <input
                 name="name"
                 type="text"
                 className="form-control"
                 placeholder="Product name"
                 required
                 aria-describedby="basic-addon1"
-              />
-            </div>
-
-            <div className="input-group">
-              <input
-                name="description"
-                type="text"
-                className="form-control"
-                placeholder="Description"
-                required
-                aria-describedby="basic-addon2"
               />
             </div>
 
@@ -135,6 +122,19 @@ export default class ProductAdd extends Component {
                 required
                 aria-describedby="basic-addon2"
               />
+            </div>
+
+             <div className="input-group">
+              <textarea
+                name="description"
+                type="text"
+                rows="5"
+                cols="30"
+                className="form-control"
+                placeholder="Description"
+                required
+                aria-describedby="basic-addon2">
+              </textarea>
             </div>
 
             <button disabled={loading} className="btn btn-primary" type="submit">
