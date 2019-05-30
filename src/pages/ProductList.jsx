@@ -59,7 +59,8 @@ export default class ProductList extends Component {
               <div className="col-md-4 col-sm-4 col-xs-12" key={index}>
                   <div className="product-holder">
                   <div className="product-image">
-                    </div>
+                    <img src="" />
+                  </div>
                     <p>ID: <span>{product.serialNum}</span></p>
                     <p>Name: <span>{product.name}</span></p>
                     <p>Price: <span>{product.price}</span></p>
