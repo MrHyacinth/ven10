@@ -141,7 +141,9 @@ export default class ProductAdd extends Component {
           {error ? error : ''}
           {success ? success : ''}
 
-          <form onSubmit={this.handleSubmit}>
+          <form 
+          enctype="multipart/form-data"
+          onSubmit={this.handleSubmit}>
             <h4> Add A New Product</h4>
 
             <div className="input-group">
@@ -177,7 +179,19 @@ export default class ProductAdd extends Component {
               </select>
             </div>
 
-            <div className="input-group">
+             <div className="input-group">
+              <input
+                name="image"
+                type="file"
+                accept="image/png, image/jpg"
+                className="form-control"
+                placeholder="Upload Image"
+                required
+                aria-describedby="basic-addon1"
+              />
+            </div>
+
+            {/* <div className="input-group">
               <div class="cc-selector">
                 <input id="sneakers" type="radio" name="image" value="sneakers.jpg" />
                 <label class="drinkcard-cc sneakers" for="sneakers" />
@@ -186,7 +200,7 @@ export default class ProductAdd extends Component {
                 <input id="watch1" type="radio" name="image" value="wwatch1.jpg" />
                 <label class="drinkcard-cc watch1" for="watch1" />
               </div>
-            </div>
+            </div> */}
 
             <div className="color-wrapper">
               {/* <p>Choose Color (# hex)</p> */}

@@ -44,7 +44,7 @@ export default class ProductDetail extends Component {
           <div className="col-md-5">
             <div className="product-description">
               <div className="image">
-                <img className="productImage" src={`/img/${product.image}`} />
+                <img className="productImage" src={product.image} />
               </div>
             </div>
           </div>
