@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import $ from 'jquery';
 
+const CONFIG = {
+  // TODO encrypt your cloud name
+  cloudName: 'divk5nutg',
+  uploadPreset: 'urnzshuz',
+};
+
 export default class ProductAdd extends Component {
   constructor(props) {
     super(props);
@@ -10,14 +16,19 @@ export default class ProductAdd extends Component {
       error: '',
       loading: false,
       success: '',
-      data: {},
+      cloudinaryWidget: '',
+      productImage: '',
     };
 
+    this.openCloudinaryWidget = this.openCloudinaryWidget.bind(this);
+    this.initCloudinary = this.initCloudinary.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    var colorList = [
+    this.initCloudinary();
+
+    const colorList = [
       '000000',
       '993300',
       '333300',
@@ -59,28 +70,29 @@ export default class ProductAdd extends Component {
       'CC99FF',
       'FFFFFF',
     ];
-    var picker = $('#color-picker');
+
+    const picker = $('#color-picker');
 
     for (var i = 0; i < colorList.length; i++) {
       picker.append(
         '<li class="color-item" data-hex="' +
-          '#' +
-          colorList[i] +
-          '" style="background-color:' +
-          '#' +
-          colorList[i] +
-          ';"></li>',
+        '#' +
+        colorList[i] +
+        '" style="background-color:' +
+        '#' +
+        colorList[i] +
+        ';"></li>',
       );
     }
 
-    $('body').click(function() {
+    $('body').click(function () {
       picker.fadeOut();
     });
 
-    $('.call-picker').click(function(event) {
+    $('.call-picker').click(function (event) {
       event.stopPropagation();
       picker.fadeIn();
-      picker.children('li').hover(function() {
+      picker.children('li').hover(function () {
         var codeHex = $(this).data('hex');
 
         $('.color-holder').css('background-color', codeHex);
@@ -89,41 +101,69 @@ export default class ProductAdd extends Component {
     });
   }
 
+  initCloudinary() {
+    try {
+      const cloudinaryWidget = window.cloudinary.createUploadWidget(CONFIG, (err, res) => {
+        if (!err && res && res.event === 'success') {
+          const { url } = res.info;
+
+          this.setState({ productImage: url });
+        } else {
+          this.setState({ error: err });
+        }
+      });
+
+      this.setState({ cloudinaryWidget });
+    } catch (ex) {
+      console.log(ex.message);
+    }
+  }
+
+  openCloudinaryWidget(event) {
+    event.preventDefault();
+
+    try {
+      const { cloudinaryWidget } = this.state;
+
+      cloudinaryWidget.open();
+    } catch (ex) {
+      console.log(ex.message);
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-    let serialNum;
+
     const name = event.currentTarget.name.value;
     const description = event.currentTarget.description.value;
     const price = event.currentTarget.price.value;
     const color = event.currentTarget.pickcolor.value;
     const category = event.currentTarget.category.value;
-    const image = event.currentTarget.image.value;
+    const { productImage } = this.state;
 
-    if (!image) {
-      alert('Please select an image ');
+    if (!productImage) {
+      this.setState({ error: 'Please upload a product image' });
       return;
     }
 
-    var num = '';
-    var possible = '0123456789';
+    let num = '';
+    const possible = '0123456789';
 
     for (var i = 0; i < 4; i++) num += possible.charAt(Math.floor(Math.random() * possible.length));
 
-    serialNum = num;
-
-   
+    const serialNum = num;
 
     const url = `${window.location.origin}/api/v1/products`;
 
     this.setState({ loading: true });
 
     axios
-      .post(url, { serialNum, name, description, price, category, image, color })
+      .post(url, { serialNum, name, description, price, category, image: productImage, color })
       .then(result => {
         this.setState({ loading: false, success: 'Product Added' });
 
         setTimeout(() => {
-          window.location.href = '/detail/' + result.data._id;
+          window.location.href = `/detail/${result.data._id}`;
         }, 2000);
       })
       .catch(error => {
@@ -134,16 +174,27 @@ export default class ProductAdd extends Component {
   }
 
   render() {
-    const { loading, error, success } = this.state;
+    const { loading, error, success, productImage } = this.state;
+
     return (
       <div className="container parent">
         <div>
-          {error ? error : ''}
-          {success ? success : ''}
+          {error ? (
+            <div className="alert alert-danger">
+              <strong style={{ paddingRight: '5px' }}>Error!</strong>
+              {error}
+            </div>
+          ) : ''}
 
-          <form 
-          enctype="multipart/form-data"
-          onSubmit={this.handleSubmit}>
+          {success ? (
+            <div className="alert alert-success">
+              <strong style={{ paddingRight: '5px' }}>Success!</strong>
+              Product addedd successfully
+            </div>
+          ) : ''}
+
+          <form onSubmit={this.handleSubmit}>
+
             <h4> Add A New Product</h4>
 
             <div className="input-group">
@@ -176,19 +227,8 @@ export default class ProductAdd extends Component {
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Unisex">Unisex</option>
+                <option value="Others">Others</option>
               </select>
-            </div>
-
-             <div className="input-group">
-              <input
-                name="image"
-                type="file"
-                accept="image/png, image/jpg"
-                className="form-control"
-                placeholder="Upload Image"
-                required
-                aria-describedby="basic-addon1"
-              />
             </div>
 
             {/* <div className="input-group">
@@ -227,6 +267,24 @@ export default class ProductAdd extends Component {
                 required
                 aria-describedby="basic-addon2"
               />
+            </div>
+
+            <div>
+              {productImage ? <img src={productImage} alt="product" style={{ height: '100px', paddingBottom: '10px' }} /> : ''}
+            </div>
+
+            <div className="input-group">
+              <button
+                type="button"
+                accept="image/png, image/jpg"
+                className="form-control btn btn-primary"
+                placeholder="Upload Image"
+                required
+                aria-describedby="basic-addon1"
+                onClick={this.openCloudinaryWidget}
+              >
+                Upload Image
+              </button>
             </div>
 
             <button disabled={loading} className="btn btn-primary" type="submit">

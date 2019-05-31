@@ -168,7 +168,7 @@ input.call-picker {
 
 .product-holder .product-image{
 
-  background: url('/img/sneakers.jpg');
+  /* background: url('/img/sneakers.jpg'); */
   height: 300px;
   background-position: center;
   background-size: cover;  
