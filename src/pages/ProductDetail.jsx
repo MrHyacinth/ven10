@@ -25,7 +25,6 @@ export default class ProductDetail extends Component {
     axios
       .get(thisProduct)
       .then(res => {
-        console.log(res.data);
         this.setState({ product: res.data });
       })
       .catch(err => {
@@ -40,11 +39,11 @@ export default class ProductDetail extends Component {
       <div className="container">
         <h3 className="ptitle mt-30">Produce Detail</h3>
         <div className="row mt-50">
-          
+
           <div className="col-md-5">
             <div className="product-description">
               <div className="image">
-                <img className="productImage" src={product.image} />
+                <img className="productImage" src={product.image} alt="productImage" />
               </div>
             </div>
           </div>
@@ -52,33 +51,33 @@ export default class ProductDetail extends Component {
           <div className="col-md-7">
             <div className="p30">
               <div>
-                <label for="id">Product ID:</label>
+                <label htmlFor="id">Product ID:</label>
                 <p className="id">{product.serialNum}</p>
               </div>
 
               <div>
-                <label for="id">Product Name:</label>
+                <label htmlFor="id">Product Name:</label>
                 <p> {product.name}</p>
               </div>
 
               <div>
-                <label for="price">Price:</label>
+                <label htmlFor="price">Price:</label>
                 <p className="price">N{product.price}</p>
               </div>
 
               <div>
-                <label for="description">Product Description:</label>
+                <label htmlFor="description">Product Description:</label>
                 <p className="description">{product.description}</p>
               </div>
 
               <div>
-                <label for="category">Product Category:</label>
+                <label htmlFor="category">Product Category:</label>
                 <p className="category">{product.category}</p>
               </div>
 
               <div>
-                <label for="color">Color:</label>
-                <div className="color-holder2" style={{backgroundColor: product.color}} />
+                <label htmlFor="color">Color:</label>
+                <div className="color-holder2" style={{ backgroundColor: product.color }} />
               </div>
             </div>
             {/* back button */}
@@ -89,4 +88,3 @@ export default class ProductDetail extends Component {
     );
   }
 }
-// }

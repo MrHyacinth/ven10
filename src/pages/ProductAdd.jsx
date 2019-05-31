@@ -3,7 +3,6 @@ import axios from 'axios';
 import $ from 'jquery';
 
 const CONFIG = {
-  // TODO encrypt your cloud name
   cloudName: 'divk5nutg',
   uploadPreset: 'urnzshuz',
 };
@@ -73,7 +72,7 @@ export default class ProductAdd extends Component {
 
     const picker = $('#color-picker');
 
-    for (var i = 0; i < colorList.length; i++) {
+    for (let i = 0; i < colorList.length; i++) {
       picker.append(
         '<li class="color-item" data-hex="' +
         '#' +
@@ -149,7 +148,7 @@ export default class ProductAdd extends Component {
     let num = '';
     const possible = '0123456789';
 
-    for (var i = 0; i < 4; i++) num += possible.charAt(Math.floor(Math.random() * possible.length));
+    for (let i = 0; i < 4; i++) num += possible.charAt(Math.floor(Math.random() * possible.length));
 
     const serialNum = num;
 
@@ -230,17 +229,6 @@ export default class ProductAdd extends Component {
                 <option value="Others">Others</option>
               </select>
             </div>
-
-            {/* <div className="input-group">
-              <div class="cc-selector">
-                <input id="sneakers" type="radio" name="image" value="sneakers.jpg" />
-                <label class="drinkcard-cc sneakers" for="sneakers" />
-                <input id="sneakers1" type="radio" name="image" value="sneakers1.jpg" />
-                <label class="drinkcard-cc sneakers1" for="sneakers1" />
-                <input id="watch1" type="radio" name="image" value="wwatch1.jpg" />
-                <label class="drinkcard-cc watch1" for="watch1" />
-              </div>
-            </div> */}
 
             <div className="color-wrapper">
               {/* <p>Choose Color (# hex)</p> */}
