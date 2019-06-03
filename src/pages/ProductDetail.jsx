@@ -37,7 +37,7 @@ export default class ProductDetail extends Component {
 
     return (
       <div className="container">
-        <h3 className="ptitle mt-30">Produce Detail</h3>
+        <h3 className="ptitle mt-30">Product Detail</h3>
         <div className="row mt-50">
 
           <div className="col-md-5">
