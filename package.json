@@ -20,7 +20,7 @@
     "hbs": "^4.0.1",
     "helmet": "^3.18.0",
     "jquery": "^3.4.1",
-    "mongoose": "^5.5.11",
+    "mongoose": "^5.7.5",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
